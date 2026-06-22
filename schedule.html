@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Schedule</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --surface: #181c27;
+    --border: #252a38;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --accent-study: #6366f1;
+    --accent-work: #f59e0b;
+    --accent-study-soft: rgba(99,102,241,0.15);
+    --accent-work-soft: rgba(245,158,11,0.12);
+    --pill-study: #818cf8;
+    --pill-work: #fbbf24;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+  }
+
+  header {
+    margin-bottom: 2.5rem;
+  }
+
+  .title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .icon { font-size: 1.6rem; }
+
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #f8fafc;
+  }
+
+  .subtitle {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+
+  .legend {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 1rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+
+  .dot-study { background: var(--accent-study); }
+  .dot-work  { background: var(--accent-work); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.75rem;
+  }
+
+  .day-col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .day-header {
+    padding: 0.75rem 1rem 0.6rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .day-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #f1f5f9;
+    letter-spacing: 0.01em;
+  }
+
+  .day-en {
+    font-size: 0.7rem;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    margin-top: 0.1rem;
+  }
+
+  .slots {
+    padding: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .slot {
+    border-radius: 8px;
+    padding: 0.65rem 0.75rem;
+    position: relative;
+    border-left: 3px solid transparent;
+  }
+
+  .slot.study {
+    background: var(--accent-study-soft);
+    border-left-color: var(--accent-study);
+  }
+
+  .slot.work {
+    background: var(--accent-work-soft);
+    border-left-color: var(--accent-work);
+  }
+
+  .slot-time {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.03em;
+  }
+
+  .slot-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 0.25rem;
+  }
+
+  .slot.study .slot-name { color: var(--pill-study); }
+  .slot.work  .slot-name { color: var(--pill-work); }
+
+  .slot-room {
+    font-size: 0.7rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .slot-room::before {
+    content: '📍';
+    font-size: 0.65rem;
+  }
+
+  .slot.work .slot-name { color: var(--pill-work); }
+
+  @media (max-width: 700px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="title-row">
+    <span class="icon">📅</span>
+    <h1>ตารางประจำสัปดาห์</h1>
+  </div>
+  <div class="subtitle">WEEKLY SCHEDULE · 2026</div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot dot-study"></div> เรียน</div>
+    <div class="legend-item"><div class="legend-dot dot-work"></div> ทำงาน</div>
+  </div>
+</header>
+
+<div class="grid">
+
+  <!-- จันทร์ -->
+  <div class="day-col">
+    <div class="day-header">
+      <div class="day-name">วันจันทร์</div>
+      <div class="day-en">MON</div>
+    </div>
+    <div class="slots">
+      <div class="slot study">
+        <div class="slot-time">09:00 – 12:00</div>
+        <div class="slot-name">English Conversation</div>
+        <div class="slot-room">78-308</div>
+      </div>
+      <div class="slot study">
+        <div class="slot-time">13:00 – 16:00</div>
+        <div class="slot-name">Innovative Technopreneur</div>
+        <div class="slot-room">31-1104B</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- อังคาร -->
+  <div class="day-col">
+    <div class="day-header">
+      <div class="day-name">วันอังคาร</div>
+      <div class="day-en">TUE</div>
+    </div>
+    <div class="slots">
+      <div class="slot study">
+        <div class="slot-time">09:00 – 12:00</div>
+        <div class="slot-name">Statistics for Biomedical</div>
+        <div class="slot-room">78-319</div>
+      </div>
+      <div class="slot work">
+        <div class="slot-time">13:00 – 16:00</div>
+        <div class="slot-name">กองแผนงาน</div>
+        <div class="slot-room">กองแผนงาน</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- พุธ -->
+  <div class="day-col">
+    <div class="day-header">
+      <div class="day-name">วันพุธ</div>
+      <div class="day-en">WED</div>
+    </div>
+    <div class="slots">
+      <div class="slot work">
+        <div class="slot-time">08:00 – 12:00</div>
+        <div class="slot-name">กองแผนงาน</div>
+        <div class="slot-room">กองแผนงาน</div>
+      </div>
+      <div class="slot study">
+        <div class="slot-time">13:00 – 16:00</div>
+        <div class="slot-name">Smart Technology for M.</div>
+        <div class="slot-room">72-404</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- พฤหัส -->
+  <div class="day-col">
+    <div class="day-header">
+      <div class="day-name">วันพฤหัสบดี</div>
+      <div class="day-en">THU</div>
+    </div>
+    <div class="slots">
+      <div class="slot study">
+        <div class="slot-time">09:00 – 12:00</div>
+        <div class="slot-name">Microcontroller System (Lecture)</div>
+        <div class="slot-room">75-404</div>
+      </div>
+      <div class="slot work">
+        <div class="slot-time">13:00 – 16:00</div>
+        <div class="slot-name">กองแผนงาน</div>
+        <div class="slot-room">กองแผนงาน</div>
+      </div>
+      <div class="slot study">
+        <div class="slot-time">16:00 – 19:00</div>
+        <div class="slot-name">Microcontroller System (Lab)</div>
+        <div class="slot-room">75-404</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ศุกร์ -->
+  <div class="day-col">
+    <div class="day-header">
+      <div class="day-name">วันศุกร์</div>
+      <div class="day-en">FRI</div>
+    </div>
+    <div class="slots">
+      <div class="slot work">
+        <div class="slot-time">08:00 – 12:00</div>
+        <div class="slot-name">กองแผนงาน</div>
+        <div class="slot-room">กองแผนงาน</div>
+      </div>
+      <div class="slot study">
+        <div class="slot-time">13:00 – 16:00</div>
+        <div class="slot-name">Hospital Engineering</div>
+        <div class="slot-room">72-403</div>
+      </div>
+      <div class="slot study">
+        <div class="slot-time">16:00 – 19:00</div>
+        <div class="slot-name">Biomedical Measurements</div>
+        <div class="slot-room">75-404</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
